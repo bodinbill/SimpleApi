@@ -10,5 +10,5 @@ import app.module.entity.ItemEntity;
  * @author Bodin Srisompong
  */
 @Repository
-public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
+public interface ItemRepository extends JpaRepository<ItemEntity, Long>, ItemRepositoryCustom {
 }

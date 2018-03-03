@@ -1,5 +1,8 @@
 package app.module.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import app.module.controller.query.WebItemQuery;
 import app.module.dao.ItemRepository;
 import app.module.dto.WebItem;
+import app.module.dto.common.Page;
 import app.module.entity.ItemEntity;
 
 /**
@@ -27,5 +31,21 @@ public class ItemsController {
         ItemEntity item = new ItemEntity();
         query.fill(item);
         return new WebItem(itemRepository.save(item));
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public Page<WebItem> get(WebItemQuery query) {
+        Page<ItemEntity> page = itemRepository.getPage(query.getPageInfo().getPageInformation());
+        return convert(page);
+    }
+
+    private Page<WebItem> convert(Page<ItemEntity> page) {
+        List<WebItem> webList = new ArrayList<>();
+
+        for (ItemEntity entity : page.getEntities()) {
+            webList.add(new WebItem(entity));
+        }
+        return Page.create(page.getPageInformation(), webList);
     }
 }

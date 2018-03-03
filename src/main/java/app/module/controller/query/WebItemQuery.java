@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class WebItemQuery {
+    private WebPageInformationQuery pageInfo = new WebPageInformationQuery();
     private String title;
     private String imageUrl;
     private String content;
