@@ -1,6 +1,8 @@
 package app.module.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,6 +21,7 @@ public class WebItem {
     private String title;
     private String imageUrl;
     private String content;
+    private List<String> tags;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private Date createDate;
@@ -32,5 +35,8 @@ public class WebItem {
         content = item.getContent();
         createDate = item.getCreateDate();
         updatedDate = item.getUpdatedDate();
+
+        tags = new ArrayList<>();
+        tags.addAll(item.getTags());
     }
 }

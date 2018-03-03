@@ -5,15 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -50,7 +48,8 @@ public class ItemEntity {
     private Date updatedDate;
 
     @Setter(AccessLevel.NONE)
-    @Transient
+    @Column(name = "TAGS")
+    @ElementCollection(targetClass = String.class)
     private List<String> tags;
 
     public ItemEntity() {

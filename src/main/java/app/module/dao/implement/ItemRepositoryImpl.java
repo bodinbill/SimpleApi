@@ -37,6 +37,9 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom {
 
             query.where(titlePredicate.or(contentPredicate));
         }
+        if (searchQuery.getTag() != null) {
+            query.where(itemEntity.tags.contains(searchQuery.getTag()));
+        }
 
         query.limit(pageInformation.getPageSize());
         query.offset(pageInformation.getOffset());

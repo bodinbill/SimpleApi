@@ -13,6 +13,7 @@ public class WebItemQuery {
     private String title;
     private String imageUrl;
     private String content;
+    private String[] tags;
 
     public void fill(ItemEntity item) {
         if (title != null) {
@@ -23,6 +24,12 @@ public class WebItemQuery {
         }
         if (content != null) {
             item.setContent(content);
+        }
+        if (tags != null) {
+            item.getTags().clear();
+            for (String tag : tags) {
+                item.getTags().add(tag);
+            }
         }
         item.setUpdatedDate(new Date());
     }
