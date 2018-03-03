@@ -29,6 +29,10 @@ public class WebItem {
     private Date updatedDate;
 
     public WebItem(ItemEntity item) {
+        this(item, false);
+    }
+
+    public WebItem(ItemEntity item, boolean lazy) {
         key = item.getKey();
         title = item.getTitle();
         imageUrl = item.getImageUrl();
@@ -36,7 +40,9 @@ public class WebItem {
         createDate = item.getCreateDate();
         updatedDate = item.getUpdatedDate();
 
-        tags = new ArrayList<>();
-        tags.addAll(item.getTags());
+        if (!lazy) {
+            tags = new ArrayList<>();
+            tags.addAll(item.getTags());
+        }
     }
 }

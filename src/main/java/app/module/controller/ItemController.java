@@ -42,6 +42,6 @@ public class ItemController {
     public WebItem delete(@PathVariable("key") Long key) {
         ItemEntity item = itemRepository.findOne(key);
         itemRepository.delete(item);
-        return new WebItem(item);
+        return new WebItem(item, true);
     }
 }
