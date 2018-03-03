@@ -1,5 +1,7 @@
 package app.module.controller.query;
 
+import java.util.Date;
+
 import app.module.entity.ItemEntity;
 import lombok.Data;
 
@@ -13,8 +15,15 @@ public class WebItemQuery {
     private String content;
 
     public void fill(ItemEntity item) {
-        item.setTitle(title);
-        item.setImageUrl(imageUrl);
-        item.setContent(content);
+        if (title != null) {
+            item.setTitle(title);
+        }
+        if (imageUrl != null) {
+            item.setImageUrl(imageUrl);
+        }
+        if (content != null) {
+            item.setContent(content);
+        }
+        item.setUpdatedDate(new Date());
     }
 }

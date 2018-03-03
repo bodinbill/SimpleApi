@@ -47,7 +47,6 @@ public class ItemEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UPDATE_DT")
-    @LastModifiedDate
     private Date updatedDate;
 
     @Setter(AccessLevel.NONE)
