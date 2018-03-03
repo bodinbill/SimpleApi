@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.module.controller.query.WebItemQuery;
+import app.module.controller.query.WebItemSearchQuery;
 import app.module.dao.ItemRepository;
 import app.module.dto.WebItem;
 import app.module.dto.common.Page;
@@ -35,8 +36,8 @@ public class ItemsController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Page<WebItem> get(WebItemQuery query) {
-        Page<ItemEntity> page = itemRepository.getPage(query.getPageInfo().getPageInformation());
+    public Page<WebItem> get(WebItemSearchQuery query) {
+        Page<ItemEntity> page = itemRepository.getPage(query);
         return convert(page);
     }
 
